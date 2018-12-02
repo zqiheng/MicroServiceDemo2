@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * description:
@@ -39,20 +41,29 @@ public class UserController {
      */
     @GetMapping("/getUserList")
     public Object getAllUserList(){
+        Map<String,Object> map = new HashMap<>();
         List<User> list = userService.getAllUserList();
         log.info("UserController-info:"+list);
-        return list;
+        if(list != null && list.size()>0){
+            map.put("code",0);
+            map.put("userList",list);
+        }else{
+            map.put("code",-1);
+        }
+        return map;
     }
 
     /**
      * API接口：添加用户信息
      * @param user　用户信息
-     * @return 1：添加成功、0：添加失败
+     * @return 0：添加成功、-1：添加失败
      * 请求地址：/user/saveUser
      */
     @PostMapping("/saveUser")
     public Object insertUserInfo(User user){
         log.info("UserController-info提交的参数："+user);
+        Map<String,Object> map = new HashMap<>();
+
         if(null != user.getName() && !user.getName().equals("")
                 && null != user.getAccount() && !user.getAccount().equals("")
                 && null != user.getPassword() && !user.getPassword().equals("")
@@ -61,26 +72,30 @@ public class UserController {
             User savedUser = userService.insertUserInfo(user);
             log.info("UserController-info新增用户信息返回的ID："+savedUser.getId());
             if(savedUser.getId() > 0){
-                return 1;
+                map.put("code",0);
+            }else{
+                map.put("code",-1);
             }
         }
-        return 0;
+        return map;
     }
 
     /**
      * API接口：批量删除用户信息
      * @param id id数组
-     * @return 1：删除成功、0：表示没有删除的对象
+     * @return 0：删除成功、-1：表示没有删除的对象
      */
     @PostMapping(value = "/deleteUserById")
     public Object deleteUserInfo(int[] id){
         log.info("UserController-info删除的Id数据："+id);
+        Map<String,Object> map = new HashMap<>();
         if(id.length > 0){
             // 删除用户
             userService.deleteUserInfo(id);
-            return 1;
+            map.put("code",0);
         }else{
-            return 0;
+            map.put("code",-1);
         }
+        return map;
     }
 }
