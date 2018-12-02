@@ -1,6 +1,8 @@
 # MicroServiceDemo
+
 微服务项目Demo2（代码重构版）
-任务要求：
+
+**任务要求：**
 - 包含Eureka服务
 - 包含Feign client的调用，并实现负载均衡
 - 包含config server
