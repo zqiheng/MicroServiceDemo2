@@ -98,4 +98,23 @@ public class UserController {
         }
         return map;
     }
+
+    /**
+     * API接口：根据用户id获取用户信息
+     * @param id 用户id
+     * @return 用户信息
+     */
+    @GetMapping("/getUserById")
+    public Object getUserById(int id){
+        log.info("UserController-info：要查询的用户Id为："+id);
+        Map<String,Object> map = new HashMap<>();
+        if(id > 0){
+            User u = userService.getUserById(id);
+            map.put("code",0);
+            map.put("user",u);
+        }else{
+            map.put("code",-1);
+        }
+        return map;
+    }
 }

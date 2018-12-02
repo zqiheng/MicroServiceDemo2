@@ -57,4 +57,14 @@ public class UserServiceImpl implements UserService {
             userDao.deleteById(i);
         }
     }
+
+    /**
+     * 根据用户Id获取用户信息
+     * @param id 用户id
+     * @return
+     */
+    @Override
+    public User getUserById(int id) {
+        return userDao.getOne(id);
+    }
 }

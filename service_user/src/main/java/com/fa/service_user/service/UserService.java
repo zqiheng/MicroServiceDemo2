@@ -19,9 +19,29 @@ import java.util.List;
  */
 public interface UserService {
 
+    /**
+     * 获取所有用户列表信息
+     * @return
+     */
     List<User> getAllUserList();
 
+    /**
+     * 新增用户信息（注册）
+     * @param user
+     * @return
+     */
     User insertUserInfo(User user);
 
+    /**
+     * 批量删除用户信息
+     * @param id
+     */
     void deleteUserInfo(int[] id);
+
+    /**
+     * 根据用户Id获取用户信息
+     * @param id 用户id
+     * @return 用户信息
+     */
+    User getUserById(int id);
 }

@@ -46,7 +46,13 @@ public class OrderDetails implements Serializable {
      * 商品Id
      */
     @Column(name = "product_id")
-    private Integer prodcutId;
+    private Integer productId;
+
+    /**
+     * 商品名称
+     */
+    @Column(name = "product_name")
+    private String productName;
 
     /**
      * 商品数量
@@ -63,9 +69,10 @@ public class OrderDetails implements Serializable {
     public OrderDetails() {
     }
 
-    public OrderDetails(Order order, Integer prodcutId, Integer productNum, Float productPrice) {
+    public OrderDetails(Order order, Integer productId, String productName, Integer productNum, Float productPrice) {
         this.order = order;
-        this.prodcutId = prodcutId;
+        this.productId = productId;
+        this.productName = productName;
         this.productNum = productNum;
         this.productPrice = productPrice;
     }

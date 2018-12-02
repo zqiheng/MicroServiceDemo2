@@ -24,4 +24,11 @@ public interface OrderDetailsService {
      * @return list集合
      */
     List<OrderDetails> getOrderDetailsList();
+
+    /**
+     * 新增订单信息
+     * @param orderDetails 封装的订单详细类
+     * @return 保存的订单详细信息（包含订单详细Id）
+     */
+    OrderDetails addOrderDetails(OrderDetails orderDetails);
 }

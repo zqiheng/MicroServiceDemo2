@@ -1,5 +1,6 @@
 package com.fa.service_user.po;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -24,6 +25,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class User {
 
     /**

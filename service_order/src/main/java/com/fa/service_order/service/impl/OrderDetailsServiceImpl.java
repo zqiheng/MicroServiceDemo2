@@ -33,4 +33,9 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
     public List<OrderDetails> getOrderDetailsList() {
         return orderDetailsDao.findAll();
     }
+
+    @Override
+    public OrderDetails addOrderDetails(OrderDetails orderDetails) {
+        return orderDetailsDao.save(orderDetails);
+    }
 }

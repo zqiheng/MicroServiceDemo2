@@ -44,6 +44,12 @@ public class Order implements Serializable {
     private Integer userId;
 
     /**
+     * 购买用户昵称（由API接口获取）
+     */
+    @Column(name = "user_name")
+    private String userName;
+
+    /**
      * 订单号:用户id+时间戳
      */
     @Column(name = "order_no", length = 30)
@@ -58,10 +64,10 @@ public class Order implements Serializable {
     private Date createTime;
 
     /**
-     * 订单状态：1：完成、0：未完成
+     * 订单状态：1：待支付、2：待发货、3：待收货、4：换货、0：退货
      */
     @Column(name = "order_status")
-    private Boolean orderStatus;
+    private Integer orderStatus;
 
     /**
      * 订单表和订单详细表是一对多关系，由订单详细信息类维护
@@ -72,7 +78,7 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(Integer userId, String orderNo, Date createTime, Boolean orderStatus, List<OrderDetails> orderDetails) {
+    public Order(Integer userId, String orderNo, Date createTime, Integer orderStatus, List<OrderDetails> orderDetails) {
         this.userId = userId;
         this.orderNo = orderNo;
         this.createTime = createTime;

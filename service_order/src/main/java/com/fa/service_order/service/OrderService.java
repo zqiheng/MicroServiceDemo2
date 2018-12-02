@@ -24,4 +24,11 @@ public interface OrderService {
      * @return list集合
      */
     List<Order> getOrderList();
+
+    /**
+     * 添加订单信息
+     * @param order 订单实体
+     * @return 保存的订单信息（包含主键）
+     */
+    Order addOrder(Order order);
 }
