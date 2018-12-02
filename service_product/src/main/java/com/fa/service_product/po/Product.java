@@ -1,5 +1,6 @@
 package com.fa.service_product.po;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -25,6 +26,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Product implements Serializable {
 
     /**
@@ -37,13 +39,13 @@ public class Product implements Serializable {
     /**
      * 商品名称
      */
-    @Column(name = "name",length = 20)
+    @Column(name = "name",length = 20,nullable = false)
     private String name;
 
     /**
      * 商品价格
      */
-    @Column(name = "price")
+    @Column(name = "price",nullable = false)
     private Float price;
 
     /**

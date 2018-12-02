@@ -31,4 +31,11 @@ public interface ProductService {
      * @return
      */
     Product getProductById(int id);
+
+    /**
+     * 添加商品信息
+     * @param product
+     * @return
+     */
+    Product addProductInfo(Product product);
 }
