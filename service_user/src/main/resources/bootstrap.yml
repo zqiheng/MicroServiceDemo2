@@ -1,0 +1,46 @@
+# 指定注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10001/eureka/
+
+# 服务名和配置文件下载中心
+spring:
+  application:
+    name: service-user
+  # 指定从哪个配置文件中心读取文件
+  cloud:
+    config:
+      discovery:
+        service-id: config-server
+        enabled: true
+      label: master
+      profile: master
+
+#server:
+#  port: 10010  # 服务自己的访问端口
+
+#spring:
+#  application:
+#    name: service-user   # 服务名，
+#  # 数据库配置（数据库：fa_microservice_user）
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost/fa_microservice_user?useUnicode=true&characterEncoding=utf-8&useSSL=true&allowMultiQueries=true&serverTimezone=GMT
+#    username: root
+#    password: root
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#    show-sql: true
+#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  # org.hibernate.dialect.MySQL5Dialect 这个不能生成外键关联
+#
+## 配置日志级别
+#logging:
+#  level:
+#    root: info
+
+
