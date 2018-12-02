@@ -13,12 +13,12 @@
 ## 配置说明
 
 |服务名|备注|端口|接口格式|数据库|
-|:--:|:--:|:--:|:--:|:--:|
+|:--:|:--:|:--:|:--|:--:|
 |eureka-server|服务注册中心|**10001**|port/eureka|无|
 |service-user|用户服务|**10010**|port/api/v1/user/|fa_microservice_user|
 |service-product|商品服务|**10020**|port/api/v1/product/|fa_microservice_product|
 |service-order|订单服务|**10030**|port/api/v1/order/|fa_microservice_order|
-|config-server|配置中心|**10003**|port/服务名/配置名.yml/|无|
+|config-server|配置中心|**10003**|port/服务名/配置名.yml|无|
 |zuul-server|网关服务|**99**|port/服务名/接口名...|无|
 
 ## 采用技术
