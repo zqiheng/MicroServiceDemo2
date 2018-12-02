@@ -32,7 +32,7 @@ Jdk 1.8 + Maven + SpringBoot 2.1.1.RELEASE  + SpringCloud Greenwich.M3 + JAP + H
 
 ## 代码托管
 
-- GigHub
+- GitHub
 
 ## 远程配置中心
 
