@@ -2,7 +2,6 @@ package com.fa.service_order.po;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -25,7 +24,6 @@ import java.util.List;
  */
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "orders")
 public class Order implements Serializable {
@@ -84,5 +82,17 @@ public class Order implements Serializable {
         this.createTime = createTime;
         this.orderStatus = orderStatus;
         this.orderDetails = orderDetails;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", orderNo='" + orderNo + '\'' +
+                ", createTime=" + createTime +
+                ", orderStatus=" + orderStatus +
+                '}';
     }
 }

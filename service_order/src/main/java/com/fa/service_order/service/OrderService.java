@@ -31,4 +31,11 @@ public interface OrderService {
      * @return 保存的订单信息（包含主键）
      */
     Order addOrder(Order order);
+
+    /**
+     * 根据订单Id查询订单信息
+     * @param id 订单id
+     * @return 订单信息
+     */
+    Order getOrderById(int id);
 }

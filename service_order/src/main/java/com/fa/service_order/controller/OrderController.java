@@ -80,7 +80,7 @@ public class OrderController {
      * @param userId     用户Id
      * @param productId  商品Id
      * @param productNum 购买的商品数量
-     * @return
+     * @return 0:添加成功，-1：添加失败
      */
     @PostMapping("/saveOrder")
     public Object addOrderInfo(int userId, int productId, int productNum) {
@@ -136,6 +136,25 @@ public class OrderController {
             }
         } else {
             map.put("code", -1);
+        }
+        return map;
+    }
+
+    /**
+     * 根据订单Id获取订单信息
+     * @param id 订单Id
+     * @return 数据集合
+     */
+    @GetMapping("/getOrderById")
+    public Object getOrderById(int id){
+        Map<String,Object> map = new HashMap<>();
+
+        if(id >0){
+            Order order = orderService.getOrderById(id);
+            map.put("code",0);
+            map.put("data",order);
+        }else {
+            map.put("code",-1);
         }
         return map;
     }

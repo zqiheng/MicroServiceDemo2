@@ -2,7 +2,6 @@ package com.fa.service_order.po;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,7 +23,6 @@ import java.io.Serializable;
 @Table(name = "order_details")
 @Getter
 @Setter
-@ToString
 public class OrderDetails implements Serializable {
 
     /**
