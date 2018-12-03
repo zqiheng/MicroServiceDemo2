@@ -38,4 +38,11 @@ public interface OrderService {
      * @return 订单信息
      */
     Order getOrderById(int id);
+
+    /**
+     * 根据用户Id查询订单信息
+     * @param userId 用户id
+     * @return 订单集合
+     */
+    List<Order> getOrderByUserId(int userId);
 }

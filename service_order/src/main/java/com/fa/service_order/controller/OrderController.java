@@ -103,7 +103,7 @@ public class OrderController {
             // 将obj对象转化为JsonNode对象
             productJson = JsonUtils.strToJsonNode(productObj);
 
-            if( null != userJson && !userJson.equals("")){
+            if (null != userJson && !userJson.equals("")) {
                 // 封装订单信息
                 Order newOrder = new Order();
                 newOrder.setCreateTime(new Date());
@@ -115,7 +115,7 @@ public class OrderController {
                 Order savedOrder = orderService.addOrder(newOrder);
                 log.info("OrderController-info：新增订单的主键：" + savedOrder.getId());
 
-                if(null != productJson && !productJson.equals("")){
+                if (null != productJson && !productJson.equals("")) {
                     // 封装订单详情信息
                     OrderDetails newOrderDetails = new OrderDetails();
                     newOrderDetails.setOrder(newOrder);
@@ -128,9 +128,9 @@ public class OrderController {
                     log.info("OrderController-info：新增的订单详情主键：" + savedOrderDetails.getId());
 
                     if (savedOrder.getId() > 0 && savedOrderDetails.getId() > 0) {
-                        map.put("code",0);
-                    }else{
-                        map.put("code",-1);
+                        map.put("code", 0);
+                    } else {
+                        map.put("code", -1);
                     }
                 }
             }
@@ -142,19 +142,41 @@ public class OrderController {
 
     /**
      * 根据订单Id获取订单信息
+     *
      * @param id 订单Id
      * @return 数据集合
      */
     @GetMapping("/getOrderById")
-    public Object getOrderById(int id){
-        Map<String,Object> map = new HashMap<>();
+    public Object getOrderById(int id) {
+        Map<String, Object> map = new HashMap<>();
 
-        if(id >0){
+        if (id > 0) {
             Order order = orderService.getOrderById(id);
-            map.put("code",0);
-            map.put("data",order);
-        }else {
-            map.put("code",-1);
+            map.put("code", 0);
+            map.put("data", order);
+        } else {
+            map.put("code", -1);
+        }
+        return map;
+    }
+
+    /**
+     * 根据用户Id获取用户的订单信息
+     *
+     * @param userId 用户Id
+     * @return 订单信息集合
+     */
+    @GetMapping("/getOrderByUserId")
+    public Object getOrderByUserId(int userId) {
+        log.info("OrderController-info：查询的用户Id为 = " + userId);
+        Map<String, Object> map = new HashMap<>();
+
+        if (userId > 0) {
+            List<Order> orderList = orderService.getOrderByUserId(userId);
+            map.put("code", 0);
+            map.put("data", orderList);
+        } else {
+            map.put("code", -1);
         }
         return map;
     }
