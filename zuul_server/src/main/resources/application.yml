@@ -1,24 +1,23 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:10001/eureka/            # 指定注册中心
+      defaultZone: http://localhost:10001/eureka/
 
 server:
-  port: 99  # 服务自己的访问端口
+  port: 99
 
 spring:
   application:
-    name: zuul-server  # 服务名
+    name: zuul-server
 
-# 自定义路由规则
 #zuul:
 #  routes:
 #    service-product: /product/**
 #    service-user: /user/**
 #    service-order: /order/**
-#  # 忽略service-*的方式访问
+#  # 锟斤拷锟斤拷service-*锟侥凤拷式锟斤拷锟斤拷
 #  # ignored-patterns: /service-*/**
-#  # 忽略整个服务，不对外提供接口
+#  # 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟今，诧拷锟斤拷锟斤拷锟结供锟接匡拷
 #  #ignored-services: service-order
 
 

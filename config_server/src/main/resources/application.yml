@@ -1,15 +1,15 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:10001/eureka/            # 指定注册中心
+      defaultZone: http://localhost:10001/eureka/
 
 server:
-  port: 10003  # 服务自己的访问端口
+  port: 10003
 
 spring:
   application:
-    name: config-server   # 服务名
-  #git配置
+    name: config-server
+  #git
   cloud:
     config:
       server:
@@ -17,7 +17,5 @@ spring:
           uri: https://gitee.com/zqheng/microdemo2-config-server
           username: 761402260@qq.com
           password: zqh0117qwer!@#$
-          #超时时间
           timeout: 5
-          #分支
           default-label: master

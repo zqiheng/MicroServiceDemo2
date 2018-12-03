@@ -1,5 +1,7 @@
 package com.fa.service_order.po;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +25,7 @@ import java.io.Serializable;
 @Table(name = "order_details")
 @Getter
 @Setter
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class OrderDetails implements Serializable {
 
     /**
@@ -36,6 +39,7 @@ public class OrderDetails implements Serializable {
      * 订单详细类和订单是多对一关系（一个订单包含多个订单信息信息），其关系由订单详细类维护（多的一方维护）
      * 所属订单，外键，关联Order表的主键id
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;

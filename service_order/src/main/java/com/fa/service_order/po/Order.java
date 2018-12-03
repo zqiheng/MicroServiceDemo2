@@ -1,5 +1,6 @@
 package com.fa.service_order.po;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,6 +27,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "orders")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class Order implements Serializable {
 
     /**
