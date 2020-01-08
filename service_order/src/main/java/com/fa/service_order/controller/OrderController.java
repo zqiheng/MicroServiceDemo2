@@ -8,13 +8,17 @@ import com.fa.service_order.service.ProductFeignClient;
 import com.fa.service_order.service.UserFeignClient;
 import com.fa.service_order.utils.JsonUtils;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * description:
@@ -57,7 +61,7 @@ public class OrderController {
      *
      * @return 订单list
      */
-    @GetMapping("/getOrderList")
+    @GetMapping("/list")
     public Object getOrderList() {
         Map<String, Object> map = new HashMap<>();
         List<Order> orderList = orderService.getOrderList();
@@ -82,28 +86,26 @@ public class OrderController {
      * @param productNum 购买的商品数量
      * @return 0:添加成功，-1：添加失败
      */
-    @PostMapping("/saveOrder")
+    @PostMapping("/save")
     public Object addOrderInfo(int userId, int productId, int productNum) {
         log.info("OrderController-info：新增订单信息：userID = " + userId
                 + "  商品ID = " + productId + "  购买商品数量 = " + productNum);
         Map<String, Object> map = new HashMap<>();
-        JsonNode userJson = null;
-        JsonNode productJson = null;
 
         if (userId > 0 && productId > 0 && productNum > 0) {
             // 根据userId获取用户信息，调用user微服务
             Map<String, Object> userMap = userfeignClient.findUserById(userId);
             Object userObj = userMap.get("user");
             // 将obj对象转化为JsonNode对象
-            userJson = JsonUtils.strToJsonNode(userObj);
+            JsonNode userJson = JsonUtils.strToJsonNode(userObj);
 
             // 根据productId获取商品信息，调用product微服务
             Map<String, Object> projectMap = productFeignClient.findProductById(productId);
             Object productObj = projectMap.get("product");
             // 将obj对象转化为JsonNode对象
-            productJson = JsonUtils.strToJsonNode(productObj);
+            JsonNode productJson = JsonUtils.strToJsonNode(productObj);
 
-            if (null != userJson && !userJson.equals("")) {
+            if (null != userJson) {
                 // 封装订单信息
                 Order newOrder = new Order();
                 newOrder.setCreateTime(new Date());
@@ -115,7 +117,7 @@ public class OrderController {
                 Order savedOrder = orderService.addOrder(newOrder);
                 log.info("OrderController-info：新增订单的主键：" + savedOrder.getId());
 
-                if (null != productJson && !productJson.equals("")) {
+                if (null != productJson) {
                     // 封装订单详情信息
                     OrderDetails newOrderDetails = new OrderDetails();
                     newOrderDetails.setOrder(newOrder);
@@ -146,7 +148,7 @@ public class OrderController {
      * @param id 订单Id
      * @return 数据集合
      */
-    @GetMapping("/getOrderById")
+    @GetMapping("/get")
     public Object getOrderById(int id) {
         Map<String, Object> map = new HashMap<>();
 
@@ -166,7 +168,7 @@ public class OrderController {
      * @param userId 用户Id
      * @return 订单信息集合
      */
-    @GetMapping("/getOrderByUserId")
+    @GetMapping("/get/byUser")
     public Object getOrderByUserId(int userId) {
         log.info("OrderController-info：查询的用户Id为 = " + userId);
         Map<String, Object> map = new HashMap<>();

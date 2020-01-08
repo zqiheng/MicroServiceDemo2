@@ -30,7 +30,7 @@ public interface ProductFeignClient {
      * @param id 商品编号
      * @return 封装的商品信息
      */
-    @GetMapping("/api/v1/product/getProductById")
+    @GetMapping("/api/v1/product/get")
     Map<String,Object> findProductById(@RequestParam(value = "id") int id);
 
 }

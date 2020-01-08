@@ -30,9 +30,9 @@ public class OrderDetailsController {
     @Resource
     private OrderDetailsService orderDetailsService;
 
-    public Object getOrderDetailsList(){
+    public Object getOrderDetailsList() {
         List<OrderDetails> orderDetailsList = orderDetailsService.getOrderDetailsList();
-        log.info("OrderDetailsController-info:所有订单详细信息："+orderDetailsList);
+        log.info("OrderDetailsController-info:所有订单详细信息：" + orderDetailsList);
         return orderDetailsList;
     }
 }

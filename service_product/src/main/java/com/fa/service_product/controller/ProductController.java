@@ -36,41 +36,43 @@ public class ProductController {
 
     /**
      * API接口：获取所有商品信息
+     *
      * @return 商品集合list
      */
-    @GetMapping("/getProductList")
-    public Object getProductList(){
-        Map<String,Object> map = new HashMap<>();
+    @GetMapping("/list")
+    public Object getProductList() {
+        Map<String, Object> map = new HashMap<>();
         List<Product> list = productService.getPorductList();
-        log.info("Product-info:"+list);
+        log.info("Product-info:" + list);
 
-        if(list != null && list.size() > 0){
-            map.put("code",0);
-            map.put("productList",list);
-        }else{
-            map.put("code",-1);
+        if (list != null && list.size() > 0) {
+            map.put("code", 0);
+            map.put("productList", list);
+        } else {
+            map.put("code", -1);
         }
         return map;
     }
 
     /**
      * API接口：添加商品信息
+     *
      * @param product
      * @return
      */
-    @PostMapping("/saveProduct")
-    public Object addProjectInfo(Product product){
-        log.info("ProductController-info：提交的商品信息："+product);
-        Map<String,Object> map = new HashMap<>();
+    @PostMapping("/save")
+    public Object addProjectInfo(Product product) {
+        log.info("ProductController-info：提交的商品信息：" + product);
+        Map<String, Object> map = new HashMap<>();
 
-        if(null != product.getName() && null != product.getPrice() && null != product.getStocks()){
+        if (null != product.getName() && null != product.getPrice() && null != product.getStocks()) {
             // 保存商品
             Product savedProduct = productService.addProductInfo(product);
-            log.info("ProductContro-info：新增商品的主键："+savedProduct.getId());
-            if(savedProduct.getId() > 0){
-                map.put("code",0);
-            }else {
-                map.put("code",-1);
+            log.info("ProductContro-info：新增商品的主键：" + savedProduct.getId());
+            if (savedProduct.getId() > 0) {
+                map.put("code", 0);
+            } else {
+                map.put("code", -1);
             }
         }
         return map;
@@ -79,20 +81,21 @@ public class ProductController {
 
     /**
      * API接口：根据商品Id信息查询商品信息
+     *
      * @param id 商品id
      * @return 商品信息
      */
-    @GetMapping("/getProductById")
-    public Object getProductById(int id){
-        log.info("Product-info:查询的商品id为 "+id);
-        Map<String,Object> map = new HashMap<>();
-        if(id > 0){
+    @GetMapping("/get")
+    public Object getProductById(int id) {
+        log.info("Product-info:查询的商品id为 " + id);
+        Map<String, Object> map = new HashMap<>();
+        if (id > 0) {
             Product product = productService.getProductById(id);
-            log.info("Product-info:查询到的商品信息为： "+product);
-            map.put("code",0);
-            map.put("product",product);
-        }else{
-            map.put("code",-1);
+            log.info("Product-info:查询到的商品信息为： " + product);
+            map.put("code", 0);
+            map.put("product", product);
+        } else {
+            map.put("code", -1);
         }
         return map;
     }

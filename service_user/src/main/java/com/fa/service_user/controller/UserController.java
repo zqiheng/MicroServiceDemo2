@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,45 +37,47 @@ public class UserController {
 
     /**
      * API接口：返回用户所有信息
+     *
      * @return List集合
      * 请求地址：/user/getAllUserList
      */
-    @GetMapping("/getUserList")
-    public Object getAllUserList(){
-        Map<String,Object> map = new HashMap<>();
+    @GetMapping("/list")
+    public Object getAllUserList() {
+        Map<String, Object> map = new HashMap<>();
         List<User> list = userService.getAllUserList();
-        log.info("UserController-info:"+list);
-        if(list != null && list.size()>0){
-            map.put("code",0);
-            map.put("userList",list);
-        }else{
-            map.put("code",-1);
+        log.info("UserController-info:" + list);
+        if (list != null && list.size() > 0) {
+            map.put("code", 0);
+            map.put("userList", list);
+        } else {
+            map.put("code", -1);
         }
         return map;
     }
 
     /**
      * API接口：添加用户信息
-     * @param user　用户信息
+     *
+     * @param user 　用户信息
      * @return 0：添加成功、-1：添加失败
      * 请求地址：/user/saveUser
      */
-    @PostMapping("/saveUser")
-    public Object insertUserInfo(User user){
-        log.info("UserController-info提交的参数："+user);
-        Map<String,Object> map = new HashMap<>();
+    @PostMapping("/save")
+    public Object insertUserInfo(User user) {
+        log.info("UserController-info提交的参数：" + user);
+        Map<String, Object> map = new HashMap<>();
 
-        if(null != user.getName() && !user.getName().equals("")
+        if (null != user.getName() && !user.getName().equals("")
                 && null != user.getAccount() && !user.getAccount().equals("")
                 && null != user.getPassword() && !user.getPassword().equals("")
-                && null != user.getSex() && !user.getSex().equals("")){
+                && null != user.getSex()) {
             // 保存用户
             User savedUser = userService.insertUserInfo(user);
-            log.info("UserController-info新增用户信息返回的ID："+savedUser.getId());
-            if(savedUser.getId() > 0){
-                map.put("code",0);
-            }else{
-                map.put("code",-1);
+            log.info("UserController-info新增用户信息返回的ID：" + savedUser.getId());
+            if (savedUser.getId() > 0) {
+                map.put("code", 0);
+            } else {
+                map.put("code", -1);
             }
         }
         return map;
@@ -82,38 +85,40 @@ public class UserController {
 
     /**
      * API接口：批量删除用户信息
+     *
      * @param id id数组
      * @return 0：删除成功、-1：表示没有删除的对象
      */
-    @PostMapping(value = "/deleteUserById")
-    public Object deleteUserInfo(int[] id){
-        log.info("UserController-info删除的Id数据："+id);
-        Map<String,Object> map = new HashMap<>();
-        if(id.length > 0){
+    @PostMapping(value = "/delete")
+    public Object deleteUserInfo(int[] id) {
+        log.info("UserController-info删除的Id数据：" + Arrays.toString(id));
+        Map<String, Object> map = new HashMap<>();
+        if (id.length > 0) {
             // 删除用户
             userService.deleteUserInfo(id);
-            map.put("code",0);
-        }else{
-            map.put("code",-1);
+            map.put("code", 0);
+        } else {
+            map.put("code", -1);
         }
         return map;
     }
 
     /**
      * API接口：根据用户id获取用户信息
+     *
      * @param id 用户id
      * @return 用户信息
      */
-    @GetMapping("/getUserById")
-    public Object getUserById(int id){
-        log.info("UserController-info：要查询的用户Id为："+id);
-        Map<String,Object> map = new HashMap<>();
-        if(id > 0){
+    @GetMapping("/get")
+    public Object getUserById(int id) {
+        log.info("UserController-info：要查询的用户Id为：" + id);
+        Map<String, Object> map = new HashMap<>();
+        if (id > 0) {
             User u = userService.getUserById(id);
-            map.put("code",0);
-            map.put("user",u);
-        }else{
-            map.put("code",-1);
+            map.put("code", 0);
+            map.put("user", u);
+        } else {
+            map.put("code", -1);
         }
         return map;
     }

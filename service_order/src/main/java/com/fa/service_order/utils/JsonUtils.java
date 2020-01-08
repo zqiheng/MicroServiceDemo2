@@ -24,10 +24,11 @@ public class JsonUtils {
 
     /**
      * json字符串转Json对象的方法
+     *
      * @param obj
      * @return
      */
-    public static JsonNode strToJsonNode(Object obj){
+    public static JsonNode strToJsonNode(Object obj) {
         try {
             String json = OBJECT_MAPPER.writeValueAsString(obj);
             return OBJECT_MAPPER.readTree(json);

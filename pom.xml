@@ -8,5 +8,14 @@
     <artifactId>MicroServiceDemo2</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <modules>
+        <module>eureka_server</module>
+        <module>config_server</module>
+        <module>zuul_server</module>
+        <module>service_user</module>
+        <module>service_product</module>
+        <module>service_order</module>
+    </modules>
+
 
 </project>

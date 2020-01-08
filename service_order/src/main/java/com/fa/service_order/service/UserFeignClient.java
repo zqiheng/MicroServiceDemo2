@@ -30,6 +30,6 @@ public interface UserFeignClient {
      * @param id
      * @return
      */
-    @GetMapping("/api/v1/user/getUserById")
+    @GetMapping("/api/v1/user/get")
     Map<String,Object> findUserById(@RequestParam(value = "id") int id);
 }
