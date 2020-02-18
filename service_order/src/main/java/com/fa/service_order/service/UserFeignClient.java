@@ -24,12 +24,13 @@ public interface UserFeignClient {
 
     /**
      * 注意：
-     *  1. @GetMapping("/api/v1/user/getUserById")中的路由要与用户业务路由相同
-     *  2. 参数要保持一致
-     *  3. 返回参数保持一致
+     * 1. @GetMapping("/api/v1/user/getUserById")中的路由要与用户业务路由相同
+     * 2. 参数要保持一致
+     * 3. 返回参数保持一致
+     *
      * @param id
      * @return
      */
     @GetMapping("/api/v1/user/get")
-    Map<String,Object> findUserById(@RequestParam(value = "id") int id);
+    Map<String, Object> findUserById(@RequestParam(value = "id") int id);
 }

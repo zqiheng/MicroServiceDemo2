@@ -8,7 +8,7 @@ server:
 
 spring:
   application:
-    name: zuul-server
+    name: zuul-service
 
 #zuul:
 #  routes:

@@ -9,7 +9,7 @@ spring:
   cloud:
     config:
       discovery:
-        service-id: config-server
+        service-id: config-service
         enabled: true
       label: master
       profile: master
