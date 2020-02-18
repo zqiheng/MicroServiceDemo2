@@ -1,0 +1,25 @@
+stages:
+- name: Build
+  steps:
+    - runScriptConfig:
+        image: maven:3.6.0-jdk-8-alpine
+        shellScript: mvn -B -U -DskipTests clean package spring-boot:repackage
+
+- name: Publish
+  steps:
+    - publishImageConfig:
+        dockerfilePath: ./Dockerfile
+        buildContext: .
+        tag: stable/${CICD_GIT_REPO_NAME}:${CICD_GIT_COMMIT}
+        pushRemote: true
+        registry: jiuxi.harbor.org
+      env:
+        PLUGIN_DEBUG: "true"
+        PLUGIN_INSECURE: "true"
+
+- name: Deploy
+  steps:
+    - applyYamlConfig:
+        path: ./Deployment.yaml
+
+notification: {}
