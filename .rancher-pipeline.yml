@@ -11,37 +11,37 @@ stages:
         dockerfilePath: ./eureka_server/Dockerfile
         tag: 192.168.66.101:8889/test/eureka_service
         pushRemote: true
-        registry: 192.168.66.101:8889
+        registry: http://192.168.66.101:8889
 
     - publishImageConfig:
         dockerfilePath: ./config_server/Dockerfile
         tag: 192.168.66.101:8889/test/config_service
         pushRemote: true
-        registry: 192.168.66.101:8889
+        registry:  http://192.168.66.101:8889
 
     - publishImageConfig:
         dockerfilePath: ./zuul_server/Dockerfile
         tag: 192.168.66.101:8889/test/zuul_service
         pushRemote: true
-        registry: 192.168.66.101:8889
+        registry:  http://192.168.66.101:8889
 
     - publishImageConfig:
         dockerfilePath: ./service_user/Dockerfile
         tag: 192.168.66.101:8889/test/service_user
         pushRemote: true
-        registry: 192.168.66.101:8889
+        registry:  http://192.168.66.101:8889
 
     - publishImageConfig:
         dockerfilePath: ./service_product/Dockerfile
         tag: 192.168.66.101:8889/test/service_product
         pushRemote: true
-        registry: 192.168.66.101:8889
+        registry:  http://192.168.66.101:8889
 
     - publishImageConfig:
         dockerfilePath: ./service_product/Dockerfile
         tag: 192.168.66.101:8889/test/service_product
         pushRemote: true
-        registry: 192.168.66.101:8889
+        registry:  http://192.168.66.101:8889
 
 - name: Deploy
   steps:
