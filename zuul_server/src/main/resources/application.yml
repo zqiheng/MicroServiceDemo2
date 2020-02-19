@@ -1,14 +1,17 @@
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:10001/eureka/
+spring:
+  application:
+    name: zuul-service
 
 server:
   port: 99
 
-spring:
-  application:
-    name: zuul-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10001/eureka/
+  instance:
+    prefer-ip-address: true
+
 
 #zuul:
 #  routes:
